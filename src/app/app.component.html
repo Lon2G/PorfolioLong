@@ -1,0 +1,193 @@
+<main class="site-shell">
+  <nav class="top-nav">
+    <a class="brand-mark" href="#hero" (click)="onNavClick('hero')">HQL</a>
+    <div class="nav-links">
+      <a *ngFor="let item of navItems" [href]="'#' + item.fragment" (click)="onNavClick(item.fragment)">{{ item.label }}</a>
+    </div>
+    <a class="nav-cta" [href]="cv" target="_blank">Resume</a>
+  </nav>
+
+  <section id="hero" class="hero-section">
+    <div class="hero-ambient"></div>
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Business × Technology × AI</p>
+        <h1>HUYNH QUOC LONG</h1>
+        <p class="hero-statement">Building digital products, commerce systems, and AI-powered business solutions.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#projects" (click)="onNavClick('projects')">Explore Work</a>
+          <a class="button secondary" [href]="cv" target="_blank">Resume</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-visual-frame">
+          <img class="hero-visual-image" [src]="photo" alt="Huynh Quoc Long portrait" loading="eager">
+        </div>
+        <div class="hero-visual-caption">
+          <span>Portrait</span>
+          <p>Product operations, business analysis, and AI-enabled commerce thinking.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="story" class="story-section section-block">
+    <div class="container story-grid">
+      <div class="section-meta story-meta">
+        <span>01</span>
+        <p>Company Introduction</p>
+      </div>
+      <div class="story-media">
+        <img [src]="photo" alt="Huynh Quoc Long portrait" loading="lazy">
+      </div>
+      <div class="story-copy">
+        <h2>Who I am</h2>
+        <p>I am a business and technology student at the University of Economics and Law, focused on e-commerce, product operations, and AI-enabled execution.</p>
+        <h3>What I do</h3>
+        <p>I turn business problems into clear product logic, structured workflows, and practical systems that teams can build and operate.</p>
+        <h3>What I believe</h3>
+        <p>Good digital products are shaped by operational clarity, strong communication, and the discipline to connect strategy with delivery.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="capabilities" class="capabilities-section section-block">
+    <div class="container">
+      <div class="section-heading">
+        <div class="section-meta">
+          <span>02</span>
+          <p>Core Services</p>
+        </div>
+        <h2>Business systems, AI product thinking, and commerce execution.</h2>
+      </div>
+
+      <div class="capability-list">
+        <article class="capability-row" *ngFor="let block of capabilityBlocks">
+          <div class="capability-icon"><i [class]="block.icon"></i></div>
+          <h3>{{ block.title }}</h3>
+          <p>{{ block.text }}</p>
+          <div class="capability-tags">
+            <span *ngFor="let tag of block.tags">{{ tag }}</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="projects-section section-block">
+    <div class="container">
+      <div class="section-heading project-heading">
+        <div class="section-meta">
+          <span>03</span>
+          <p>Featured Projects</p>
+        </div>
+        <h2>Case studies presented like major client engagements.</h2>
+      </div>
+    </div>
+
+    <article class="project-case container" *ngFor="let project of projects; let index = index; trackBy: trackByProject" [class.reverse]="index % 2 === 1">
+      <div class="project-image">
+        <img [src]="project.image" [alt]="project.fullName" loading="lazy">
+      </div>
+      <div class="project-content">
+        <div class="project-kicker">FEATURED CASE STUDY 0{{ index + 1 }} / {{ project.year }}</div>
+        <h3>{{ project.name }}</h3>
+        <p class="project-overview">{{ project.summary }}</p>
+        <dl class="project-facts">
+          <div>
+            <dt>Role</dt>
+            <dd>{{ project.role }}</dd>
+          </div>
+          <div>
+            <dt>Challenge</dt>
+            <dd>{{ project.problem }}</dd>
+          </div>
+          <div>
+            <dt>Solution</dt>
+            <dd>{{ project.solution }}</dd>
+          </div>
+          <div>
+            <dt>Outcome</dt>
+            <dd>{{ project.impact }}</dd>
+          </div>
+          <div>
+            <dt>Technology</dt>
+            <dd class="project-tech">
+              <span *ngFor="let tag of project.tags">{{ tag }}</span>
+            </dd>
+          </div>
+        </dl>
+        <div class="action-row compact">
+          <a class="button secondary" [href]="project.link" target="_blank">Live Demo</a>
+          <a class="button secondary" [href]="project.github" target="_blank">GitHub</a>
+          <a class="button primary" [href]="project.caseStudy" target="_blank">Case Study</a>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section id="experience" class="experience-section section-block">
+    <div class="container">
+      <div class="section-heading">
+        <div class="section-meta">
+          <span>04</span>
+          <p>Evidence</p>
+        </div>
+        <h2>Professional experience presented as a simple timeline.</h2>
+      </div>
+
+      <div class="timeline-list">
+        <article class="timeline-row" *ngFor="let item of experienceItems">
+          <div class="timeline-period">{{ item.duration }}</div>
+          <div class="timeline-role">
+            <h3>{{ item.role }}</h3>
+            <p>{{ item.type }}</p>
+          </div>
+          <div class="timeline-notes">
+            <p *ngFor="let achievement of item.achievements">{{ achievement }}</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="insights" class="insights-section section-block">
+    <div class="container">
+      <div class="section-heading">
+        <div class="section-meta">
+          <span>05</span>
+          <p>Knowledge Areas</p>
+        </div>
+        <h2>Areas of expertise across business, product, data, and AI.</h2>
+      </div>
+
+      <div class="expertise-grid">
+        <article class="expertise-item" *ngFor="let group of skillGroups">
+          <p class="expertise-label">{{ group.category }}</p>
+          <h3>{{ group.items.join(' / ') }}</h3>
+          <p class="expertise-meta">Level {{ group.level }}%</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact-section section-block">
+    <div class="container contact-grid">
+      <div class="section-meta">
+        <span>06</span>
+        <p>Contact</p>
+      </div>
+      <div class="contact-copy">
+        <h2>Let's build something great together.</h2>
+        <p>Available for product operations, business analysis, and AI product work.</p>
+      </div>
+      <div class="contact-links">
+        <a [href]="'mailto:' + email">Email</a>
+        <a [href]="linkedin" target="_blank">LinkedIn</a>
+        <a [href]="github" target="_blank">GitHub</a>
+        <a [href]="cv" target="_blank">Resume</a>
+      </div>
+    </div>
+  </section>
+</main>
