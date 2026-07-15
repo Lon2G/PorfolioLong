@@ -1,69 +1,83 @@
 <main class="site-shell">
-  <nav class="top-nav">
-    <a class="brand-mark" href="#hero" (click)="onNavClick('hero')">HQL</a>
+  <nav class="top-nav" [class.scrolled]="isNavScrolled">
+    <div class="nav-brand">
+      <a class="brand-mark" href="#hero" (click)="onNavClick('hero')">HQL</a>
+      <div class="nav-social">
+        <a [href]="linkedin" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a [href]="github" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      </div>
+    </div>
     <div class="nav-links">
       <a *ngFor="let item of navItems" [href]="'#' + item.fragment" (click)="onNavClick(item.fragment)">{{ item.label }}</a>
     </div>
-    <a class="nav-cta" [href]="cv" target="_blank">Resume</a>
+    <a class="nav-cta" [href]="cv" target="_blank">Resume <i class="fas fa-arrow-up-right-from-square"></i></a>
   </nav>
 
   <section id="hero" class="hero-section">
-    <div class="hero-ambient"></div>
-    <div class="container hero-grid">
-      <div class="hero-copy">
-        <p class="eyebrow">Business × Technology × AI</p>
-        <h1>HUYNH QUOC LONG</h1>
-        <p class="hero-statement">Building digital products, commerce systems, and AI-powered business solutions.</p>
-        <div class="hero-actions">
-          <a class="button primary" href="#projects" (click)="onNavClick('projects')">Explore Work</a>
-          <a class="button secondary" [href]="cv" target="_blank">Resume</a>
+    <div class="container">
+      <div class="hero-main">
+        <div class="hero-copy reveal">
+          <span class="badge on-dark">Business &amp; Technology Student</span>
+          <h1 class="hero-name">Huynh Quoc <span class="accent">Long</span></h1>
+          <p class="hero-tagline">Business Technology AI</p>
+          <p class="hero-statement">Building digital products, commerce systems, and AI-powered business solutions with a focus on strategic value and technical excellence.</p>
+          <div class="hero-cta-row">
+            <a class="button primary" href="#contact" (click)="onNavClick('contact')">Let's Work Together</a>
+            <a class="button outline" href="#projects" (click)="onNavClick('projects')">View Case Studies</a>
+          </div>
+        </div>
+
+        <div class="hero-photo-wrap reveal" style="--i: 1">
+          <div class="hero-photo">
+            <img [src]="photo" alt="Huynh Quoc Long portrait" loading="eager">
+          </div>
+          <span class="hero-photo-badge"><i class="fas fa-circle-check"></i> Available for work</span>
         </div>
       </div>
 
-      <div class="hero-visual">
-        <div class="hero-visual-frame">
-          <img class="hero-visual-image" [src]="photo" alt="Huynh Quoc Long portrait" loading="eager">
-        </div>
-        <div class="hero-visual-caption">
-          <span>Portrait</span>
-          <p>Product operations, business analysis, and AI-enabled commerce thinking.</p>
+      <div class="stats-bar reveal" style="--i: 2">
+        <div class="stat-item" *ngFor="let highlight of heroHighlights">
+          <div class="stat-icon"><i [class]="highlight.icon"></i></div>
+          <p class="stat-value">{{ highlight.prefix }}{{ highlight.display }}{{ highlight.suffix }}</p>
+          <p class="stat-label">{{ highlight.label }}</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="story" class="story-section section-block">
-    <div class="container story-grid">
-      <div class="section-meta story-meta">
-        <span>01</span>
-        <p>Company Introduction</p>
+  <section id="story" class="about-section section-block light">
+    <div class="container about-grid">
+      <div class="about-heading reveal">
+        <span class="badge">ABOUT ME</span>
+        <h2>Built On Clarity, Driven By Execution</h2>
       </div>
-      <div class="story-media">
-        <img [src]="photo" alt="Huynh Quoc Long portrait" loading="lazy">
-      </div>
-      <div class="story-copy">
-        <h2>Who I am</h2>
-        <p>I am a business and technology student at the University of Economics and Law, focused on e-commerce, product operations, and AI-enabled execution.</p>
-        <h3>What I do</h3>
-        <p>I turn business problems into clear product logic, structured workflows, and practical systems that teams can build and operate.</p>
-        <h3>What I believe</h3>
-        <p>Good digital products are shaped by operational clarity, strong communication, and the discipline to connect strategy with delivery.</p>
+      <div class="about-copy reveal" style="--i: 1">
+        <p class="about-lead">I am a business and technology student at the University of Economics and Law, focused on e-commerce, product operations, and AI-enabled execution.</p>
+        <p>I turn business problems into clear product logic, structured workflows, and practical systems that teams can build and operate. Good digital products are shaped by operational clarity, strong communication, and the discipline to connect strategy with delivery.</p>
+        <a class="button primary" href="#projects" (click)="onNavClick('projects')">View My Work <i class="fas fa-arrow-up-right-from-square"></i></a>
       </div>
     </div>
   </section>
 
-  <section id="capabilities" class="capabilities-section section-block">
+  <section id="capabilities" class="services-section section-block dark">
     <div class="container">
       <div class="section-heading">
-        <div class="section-meta">
-          <span>02</span>
-          <p>Core Services</p>
+        <div class="heading-main">
+          <span class="badge on-dark">MY SERVICES</span>
+          <h2>Core <span class="accent">Services</span></h2>
         </div>
-        <h2>Business systems, AI product thinking, and commerce execution.</h2>
+        <div class="heading-aside">
+          <p>Business systems, AI product thinking, and commerce execution — built through real coursework and projects.</p>
+          <div class="carousel-controls">
+            <button type="button" (click)="scrollCarousel(capTrack, -1)" aria-label="Scroll left"><i class="fas fa-arrow-left"></i></button>
+            <button type="button" (click)="scrollCarousel(capTrack, 1)" aria-label="Scroll right"><i class="fas fa-arrow-right"></i></button>
+          </div>
+        </div>
       </div>
 
-      <div class="capability-list">
-        <article class="capability-row" *ngFor="let block of capabilityBlocks">
+      <div class="capability-track" #capTrack>
+        <article class="capability-card reveal" *ngFor="let block of capabilityBlocks; let i = index" [style.--i]="i">
+          <span class="card-badge">{{ block.badge }}</span>
           <div class="capability-icon"><i [class]="block.icon"></i></div>
           <h3>{{ block.title }}</h3>
           <p>{{ block.text }}</p>
@@ -75,70 +89,102 @@
     </div>
   </section>
 
-  <section id="projects" class="projects-section section-block">
+  <section id="projects" class="projects-section section-block light">
     <div class="container">
-      <div class="section-heading project-heading">
-        <div class="section-meta">
-          <span>03</span>
-          <p>Featured Projects</p>
+      <div class="section-heading">
+        <div class="heading-main">
+          <span class="badge">PROJECTS I'M PROUD OF</span>
+          <h2>Featured Projects</h2>
         </div>
-        <h2>Case studies presented like major client engagements.</h2>
+        <div class="heading-aside">
+          <p>Seven case studies spanning e-commerce, MarTech, systems analysis, and social commerce — each one a full journey from problem to shipped prototype.</p>
+          <a class="button primary" [href]="github" target="_blank">See All on GitHub <i class="fas fa-arrow-up-right-from-square"></i></a>
+        </div>
       </div>
     </div>
 
-    <article class="project-case container" *ngFor="let project of projects; let index = index; trackBy: trackByProject" [class.reverse]="index % 2 === 1">
-      <div class="project-image">
-        <img [src]="project.image" [alt]="project.fullName" loading="lazy">
+    <article class="project-card reveal" *ngFor="let project of projects; let index = index; trackBy: trackByProject">
+      <div class="project-row-bar">
+        <span class="project-row-title">{{ project.name }}</span>
+        <span class="project-row-tags">
+          <span *ngFor="let tag of project.tags">{{ tag }}</span>
+        </span>
+        <span class="project-row-year">{{ project.year }}</span>
       </div>
-      <div class="project-content">
-        <div class="project-kicker">FEATURED CASE STUDY 0{{ index + 1 }} / {{ project.year }}</div>
-        <h3>{{ project.name }}</h3>
-        <p class="project-overview">{{ project.summary }}</p>
-        <dl class="project-facts">
-          <div>
-            <dt>Role</dt>
-            <dd>{{ project.role }}</dd>
+
+      <div class="project-body" [class.reverse]="index % 2 === 1">
+        <div class="project-image">
+          <img [src]="project.image" [alt]="project.fullName" loading="lazy">
+          <div class="project-image-caption">
+            <span>{{ project.name }}</span>
+            <i class="fas fa-arrow-up-right-from-square"></i>
           </div>
-          <div>
-            <dt>Challenge</dt>
-            <dd>{{ project.problem }}</dd>
+        </div>
+        <div class="project-content">
+          <div class="project-kicker">FEATURED CASE STUDY 0{{ index + 1 }} / {{ project.year }}</div>
+          <h3>{{ project.fullName }}</h3>
+          <p class="project-overview">{{ project.summary }}</p>
+
+          <div class="project-metrics">
+            <div class="metric" *ngFor="let metric of project.metrics">
+              <span class="metric-value">{{ metric.value }}</span>
+              <span class="metric-label">{{ metric.label }}</span>
+            </div>
           </div>
-          <div>
-            <dt>Solution</dt>
-            <dd>{{ project.solution }}</dd>
+
+          <dl class="project-facts">
+            <div>
+              <dt>Role</dt>
+              <dd>{{ project.role }}</dd>
+            </div>
+            <div>
+              <dt>Challenge</dt>
+              <dd>{{ project.problem }}</dd>
+            </div>
+            <div>
+              <dt>Solution</dt>
+              <dd>{{ project.solution }}</dd>
+            </div>
+            <div>
+              <dt>Outcome</dt>
+              <dd>{{ project.impact }}</dd>
+            </div>
+          </dl>
+
+          <button type="button" class="details-toggle" (click)="toggleDetails(project)">
+            <span>{{ project.expanded ? 'Hide Key Features' : 'View Key Features' }}</span>
+            <i class="fas fa-chevron-down" [class.rotated]="project.expanded"></i>
+          </button>
+
+          <ul class="project-features" *ngIf="project.expanded">
+            <li *ngFor="let feature of project.features">
+              <i class="fas fa-check-circle"></i>
+              <span>{{ feature }}</span>
+            </li>
+          </ul>
+
+          <div class="action-row compact">
+            <a class="button tertiary" [href]="project.link" target="_blank">Live Demo</a>
+            <a class="button tertiary" [href]="project.github" target="_blank">GitHub</a>
+            <a class="button primary" [href]="project.caseStudy" target="_blank">Case Study <i class="fas fa-arrow-up-right-from-square"></i></a>
           </div>
-          <div>
-            <dt>Outcome</dt>
-            <dd>{{ project.impact }}</dd>
-          </div>
-          <div>
-            <dt>Technology</dt>
-            <dd class="project-tech">
-              <span *ngFor="let tag of project.tags">{{ tag }}</span>
-            </dd>
-          </div>
-        </dl>
-        <div class="action-row compact">
-          <a class="button secondary" [href]="project.link" target="_blank">Live Demo</a>
-          <a class="button secondary" [href]="project.github" target="_blank">GitHub</a>
-          <a class="button primary" [href]="project.caseStudy" target="_blank">Case Study</a>
         </div>
       </div>
     </article>
   </section>
 
-  <section id="experience" class="experience-section section-block">
+  <section id="experience" class="experience-section section-block dark">
     <div class="container">
       <div class="section-heading">
-        <div class="section-meta">
-          <span>04</span>
-          <p>Evidence</p>
+        <div class="heading-main">
+          <span class="badge on-dark">EVIDENCE</span>
+          <h2>Professional <span class="accent">Journey</span></h2>
         </div>
-        <h2>Professional experience presented as a simple timeline.</h2>
       </div>
 
       <div class="timeline-list">
-        <article class="timeline-row" *ngFor="let item of experienceItems">
+        <article class="timeline-card reveal" *ngFor="let item of experienceItems; let i = index" [style.--i]="i">
+          <div class="timeline-icon"><i class="fas fa-clock-rotate-left"></i></div>
           <div class="timeline-period">{{ item.duration }}</div>
           <div class="timeline-role">
             <h3>{{ item.role }}</h3>
@@ -152,18 +198,18 @@
     </div>
   </section>
 
-  <section id="insights" class="insights-section section-block">
+  <section id="insights" class="insights-section section-block light">
     <div class="container">
       <div class="section-heading">
-        <div class="section-meta">
-          <span>05</span>
-          <p>Knowledge Areas</p>
+        <div class="heading-main">
+          <span class="badge">KNOWLEDGE AREAS</span>
+          <h2>Areas of <span class="accent">Expertise</span></h2>
         </div>
-        <h2>Areas of expertise across business, product, data, and AI.</h2>
       </div>
 
       <div class="expertise-grid">
-        <article class="expertise-item" *ngFor="let group of skillGroups">
+        <article class="expertise-item reveal" *ngFor="let group of skillGroups; let i = index" [style.--i]="i">
+          <div class="capability-icon"><i [class]="group.icon"></i></div>
           <p class="expertise-label">{{ group.category }}</p>
           <h3>{{ group.items.join(' / ') }}</h3>
           <p class="expertise-meta">Level {{ group.level }}%</p>
@@ -172,17 +218,14 @@
     </div>
   </section>
 
-  <section id="contact" class="contact-section section-block">
+  <section id="contact" class="contact-section section-block dark">
     <div class="container contact-grid">
-      <div class="section-meta">
-        <span>06</span>
-        <p>Contact</p>
-      </div>
-      <div class="contact-copy">
+      <span class="badge on-dark">CONTACT</span>
+      <div class="contact-copy reveal">
         <h2>Let's build something great together.</h2>
         <p>Available for product operations, business analysis, and AI product work.</p>
       </div>
-      <div class="contact-links">
+      <div class="contact-links reveal" style="--i: 1">
         <a [href]="'mailto:' + email">Email</a>
         <a [href]="linkedin" target="_blank">LinkedIn</a>
         <a [href]="github" target="_blank">GitHub</a>
