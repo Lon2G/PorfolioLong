@@ -10,39 +10,40 @@
     <div class="nav-links">
       <a *ngFor="let item of navItems" [href]="'#' + item.fragment" (click)="onNavClick(item.fragment)">{{ item.label }}</a>
     </div>
-    <a class="nav-cta" [href]="cv" target="_blank">Resume <i class="fas fa-arrow-up-right-from-square"></i></a>
   </nav>
 
   <section id="hero" class="hero-section">
     <div class="container">
       <div class="hero-main">
-        <div class="hero-copy reveal">
-          <span class="badge on-dark">Business &amp; Technology Student</span>
-          <h1 class="hero-name">Huynh Quoc <span class="accent">Long</span></h1>
-          <p class="hero-tagline">Business Technology AI</p>
-          <p class="hero-statement">Building digital products, commerce systems, and AI-powered business solutions with a focus on strategic value and technical excellence.</p>
-          <div class="hero-cta-row">
+        <div class="hero-copy">
+          <span class="badge on-dark reveal" style="--i: 0">Business &amp; Technology Student</span>
+          <h1 class="hero-name reveal" style="--i: 1">Huynh Quoc <span class="accent">Long</span></h1>
+          <p class="hero-tagline reveal" style="--i: 2">Business Technology AI</p>
+          <p class="hero-statement reveal" style="--i: 3">Building digital products, commerce systems, and AI-powered business solutions with a focus on strategic value and technical excellence.</p>
+          <div class="hero-cta-row reveal" style="--i: 4">
             <a class="button primary" href="#contact" (click)="onNavClick('contact')">Let's Work Together</a>
             <a class="button outline" href="#projects" (click)="onNavClick('projects')">View Case Studies</a>
           </div>
         </div>
 
-        <div class="hero-photo-wrap reveal" style="--i: 1">
-          <div class="hero-photo">
-            <img [src]="photo" alt="Huynh Quoc Long portrait" loading="eager">
-          </div>
-          <span class="hero-photo-badge"><i class="fas fa-circle-check"></i> Available for work</span>
-        </div>
-      </div>
+        <app-hero-model class="hero-model-slot reveal" style="--i: 2"></app-hero-model>
 
-      <div class="stats-bar reveal" style="--i: 2">
-        <div class="stat-item" *ngFor="let highlight of heroHighlights">
-          <div class="stat-icon"><i [class]="highlight.icon"></i></div>
-          <p class="stat-value">{{ highlight.prefix }}{{ highlight.display }}{{ highlight.suffix }}</p>
-          <p class="stat-label">{{ highlight.label }}</p>
+        <div class="stats-bar reveal" style="--i: 3">
+          <div class="stat-item" *ngFor="let highlight of heroHighlights">
+            <div class="stat-icon"><i [class]="highlight.icon"></i></div>
+            <div class="stat-copy">
+              <p class="stat-value">{{ highlight.prefix }}{{ highlight.display }}{{ highlight.suffix }}</p>
+              <p class="stat-label">{{ highlight.label }}</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+
+    <button type="button" class="scroll-indicator reveal" style="--i: 5" (click)="onNavClick('story')" aria-label="Scroll to About Me section">
+      <span>Scroll Down</span>
+      <i class="fas fa-chevron-down"></i>
+    </button>
   </section>
 
   <section id="story" class="about-section section-block light">
@@ -67,7 +68,7 @@
           <h2>Core <span class="accent">Services</span></h2>
         </div>
         <div class="heading-aside">
-          <p>Business systems, AI product thinking, and commerce execution — built through real coursework and projects.</p>
+          <p>Business systems, AI product thinking, and commerce execution, built through real coursework and projects.</p>
           <div class="carousel-controls">
             <button type="button" (click)="scrollCarousel(capTrack, -1)" aria-label="Scroll left"><i class="fas fa-arrow-left"></i></button>
             <button type="button" (click)="scrollCarousel(capTrack, 1)" aria-label="Scroll right"><i class="fas fa-arrow-right"></i></button>
@@ -97,7 +98,11 @@
           <h2>Featured Projects</h2>
         </div>
         <div class="heading-aside">
-          <p>Seven case studies spanning e-commerce, MarTech, systems analysis, and social commerce — each one a full journey from problem to shipped prototype.</p>
+          <div class="heading-count-row">
+            <span class="heading-count">{{ projects.length | number: '2.0-0' }}</span>
+            <span class="heading-count-label">Case Studies</span>
+          </div>
+          <p>Seven case studies spanning e-commerce, MarTech, systems analysis, and social commerce. Each one is a full journey from problem to shipped prototype.</p>
           <a class="button primary" [href]="github" target="_blank">See All on GitHub <i class="fas fa-arrow-up-right-from-square"></i></a>
         </div>
       </div>
@@ -132,46 +137,16 @@
             </div>
           </div>
 
-          <dl class="project-facts">
-            <div>
-              <dt>Role</dt>
-              <dd>{{ project.role }}</dd>
-            </div>
-            <div>
-              <dt>Challenge</dt>
-              <dd>{{ project.problem }}</dd>
-            </div>
-            <div>
-              <dt>Solution</dt>
-              <dd>{{ project.solution }}</dd>
-            </div>
-            <div>
-              <dt>Outcome</dt>
-              <dd>{{ project.impact }}</dd>
-            </div>
-          </dl>
-
-          <button type="button" class="details-toggle" (click)="toggleDetails(project)">
-            <span>{{ project.expanded ? 'Hide Key Features' : 'View Key Features' }}</span>
-            <i class="fas fa-chevron-down" [class.rotated]="project.expanded"></i>
-          </button>
-
-          <ul class="project-features" *ngIf="project.expanded">
-            <li *ngFor="let feature of project.features">
-              <i class="fas fa-check-circle"></i>
-              <span>{{ feature }}</span>
-            </li>
-          </ul>
-
           <div class="action-row compact">
-            <a class="button tertiary" [href]="project.link" target="_blank">Live Demo</a>
-            <a class="button tertiary" [href]="project.github" target="_blank">GitHub</a>
-            <a class="button primary" [href]="project.caseStudy" target="_blank">Case Study <i class="fas fa-arrow-up-right-from-square"></i></a>
+            <a class="button tertiary" *ngIf="project.github !== '#'" [href]="project.github" target="_blank">GitHub</a>
+            <button type="button" class="button primary" (click)="openProject(project)">Case Study</button>
           </div>
         </div>
       </div>
     </article>
   </section>
+
+  <app-project-modal [project]="selectedProject" (closed)="closeProject()"></app-project-modal>
 
   <section id="experience" class="experience-section section-block dark">
     <div class="container">
@@ -229,8 +204,39 @@
         <a [href]="'mailto:' + email">Email</a>
         <a [href]="linkedin" target="_blank">LinkedIn</a>
         <a [href]="github" target="_blank">GitHub</a>
-        <a [href]="cv" target="_blank">Resume</a>
       </div>
     </div>
   </section>
 </main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-col footer-brand">
+      <div class="footer-mark">HQL</div>
+      <p class="footer-name">{{ name }}</p>
+      <p class="footer-tagline">Business Technology AI</p>
+      <p class="footer-meta"><i class="fas fa-flag"></i> {{ nationality }}</p>
+    </div>
+
+    <div class="footer-col">
+      <h4 class="footer-heading">Contact</h4>
+      <a class="footer-link" [href]="phoneHref"><i class="fas fa-phone"></i> {{ phone }}</a>
+      <a class="footer-link" [href]="'mailto:' + email"><i class="fas fa-envelope"></i> {{ email }}</a>
+    </div>
+
+    <div class="footer-col">
+      <h4 class="footer-heading">Connect</h4>
+      <a class="footer-link" [href]="linkedin" target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+      <a class="footer-link" [href]="github" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+    </div>
+
+    <div class="footer-col">
+      <h4 class="footer-heading">Quick Links</h4>
+      <a class="footer-link" *ngFor="let item of navItems" [href]="'#' + item.fragment" (click)="onNavClick(item.fragment)">{{ item.label }}</a>
+    </div>
+  </div>
+
+  <div class="container footer-bottom">
+    <p>&copy; 2026 {{ name }}. All rights reserved.</p>
+  </div>
+</footer>

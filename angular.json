@@ -50,7 +50,12 @@
                 "glob": "**/*",
                 "input": "public"
               },
-              "src/Images"
+              "src/Images",
+              {
+                "glob": "**/*",
+                "input": "3d",
+                "output": "3d"
+              }
             ],
             "styles": [
               "src/styles.css"

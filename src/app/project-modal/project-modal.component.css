@@ -1,0 +1,206 @@
+:host {
+  display: block;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.modal-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-panel {
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 44px;
+  border-radius: 12px;
+  background: var(--paper-card, #ffffff);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+  color: var(--ink-dark, #14202b);
+  transform: scale(0.95);
+  opacity: 0;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.modal-panel.open {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid var(--line-light, rgba(20, 32, 43, 0.12));
+  background: transparent;
+  color: var(--ink-dark, #14202b);
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.modal-close:hover {
+  background: var(--gold, #d9a441);
+  border-color: var(--gold, #d9a441);
+  color: var(--navy, #0e1b2b);
+}
+
+.modal-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  width: fit-content;
+  margin: 0 auto 24px;
+  padding: 4px;
+  border-radius: 999px;
+  background: rgba(20, 32, 43, 0.06);
+}
+
+.modal-tabs button {
+  padding: 9px 22px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted-dark, rgba(20, 32, 43, 0.68));
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.modal-tabs button.active {
+  background: var(--gold, #d9a441);
+  color: var(--navy, #0e1b2b);
+}
+
+.modal-gallery {
+  display: grid;
+  gap: 16px;
+  margin-top: 4px;
+}
+
+.modal-gallery img {
+  width: 100%;
+  display: block;
+  border-radius: 8px;
+  border: 1px solid var(--line-light, rgba(20, 32, 43, 0.12));
+}
+
+.modal-kicker {
+  color: var(--muted-dark, rgba(20, 32, 43, 0.68));
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.modal-title {
+  margin: 10px 40px 0 0;
+  font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+  font-weight: 900;
+  line-height: 1.25;
+}
+
+.modal-overview {
+  margin: 16px 0 0;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--muted-dark, rgba(20, 32, 43, 0.68));
+}
+
+.modal-facts {
+  display: grid;
+  gap: 16px;
+  margin: 24px 0 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--line-light, rgba(20, 32, 43, 0.12));
+}
+
+.modal-facts div {
+  display: grid;
+  grid-template-columns: 100px minmax(0, 1fr);
+  gap: 14px;
+}
+
+.modal-facts dt {
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted-dark, rgba(20, 32, 43, 0.68));
+}
+
+.modal-facts dd {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.modal-features {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line-light, rgba(20, 32, 43, 0.12));
+}
+
+.modal-features h4 {
+  margin: 0 0 14px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted-dark, rgba(20, 32, 43, 0.68));
+}
+
+.modal-features ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+
+.modal-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.modal-features li i {
+  flex-shrink: 0;
+  margin-top: 3px;
+  color: var(--gold, #d9a441);
+  font-size: 0.85rem;
+}
+
+@media screen and (max-width: 680px) {
+  .modal-panel { padding: 32px 24px; max-height: 90vh; }
+  .modal-facts div { grid-template-columns: 1fr; gap: 6px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .modal-overlay, .modal-panel { transition: none; }
+}

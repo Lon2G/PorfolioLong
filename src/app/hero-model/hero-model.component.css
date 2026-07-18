@@ -1,0 +1,36 @@
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.model-stage {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transform: scale(0.88);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.model-stage.is-ready {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.model-stage canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: none;
+  cursor: grab;
+}
+
+.model-stage canvas:active {
+  cursor: grabbing;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .model-stage {
+    transition: none;
+  }
+}

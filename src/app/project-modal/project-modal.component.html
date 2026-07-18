@@ -1,0 +1,52 @@
+<div class="modal-overlay" [class.open]="isOpen" (click)="onOverlayClick()">
+  <div class="modal-panel" [class.open]="isOpen" (click)="$event.stopPropagation()" *ngIf="displayProject as project">
+    <button type="button" class="modal-close" (click)="closed.emit()" aria-label="Close">
+      <i class="fas fa-xmark"></i>
+    </button>
+
+    <div class="modal-tabs">
+      <button type="button" [class.active]="activeTab === 'content'" (click)="activeTab = 'content'">Content</button>
+      <button type="button" [class.active]="activeTab === 'gallery'" (click)="activeTab = 'gallery'">Project</button>
+    </div>
+
+    <div class="modal-kicker">{{ project.name }}</div>
+    <h3 class="modal-title">{{ project.fullName }}</h3>
+
+    <ng-container *ngIf="activeTab === 'content'">
+      <p class="modal-overview">{{ project.summary }}</p>
+
+      <dl class="modal-facts">
+        <div>
+          <dt>Role</dt>
+          <dd>{{ project.role }}</dd>
+        </div>
+        <div>
+          <dt>Challenge</dt>
+          <dd>{{ project.problem }}</dd>
+        </div>
+        <div>
+          <dt>Solution</dt>
+          <dd>{{ project.solution }}</dd>
+        </div>
+        <div>
+          <dt>Outcome</dt>
+          <dd>{{ project.impact }}</dd>
+        </div>
+      </dl>
+
+      <div class="modal-features" *ngIf="project.features?.length">
+        <h4>Key Features</h4>
+        <ul>
+          <li *ngFor="let feature of project.features">
+            <i class="fas fa-check-circle"></i>
+            <span>{{ feature }}</span>
+          </li>
+        </ul>
+      </div>
+    </ng-container>
+
+    <div class="modal-gallery" *ngIf="activeTab === 'gallery'">
+      <img *ngFor="let img of project.gallery" [src]="img" [alt]="project.fullName" loading="lazy">
+    </div>
+  </div>
+</div>

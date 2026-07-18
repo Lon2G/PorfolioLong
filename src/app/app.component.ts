@@ -1,24 +1,29 @@
 import { AfterViewInit, Component, ElementRef, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ProjectModalComponent } from './project-modal/project-modal.component';
+import { HeroModelComponent } from './hero-model/hero-model.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ProjectModalComponent, HeroModelComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent implements AfterViewInit {
   isNavScrolled = false;
   private statsAnimated = false;
+  selectedProject: any = null;
 
   constructor(private host: ElementRef<HTMLElement>) {}
   name = 'Huynh Quoc Long';
   gpa = '8.24/10.00';
   email = 'huynhquoclong.2005@gmail.com';
+  phone = '0787 567 381';
+  phoneHref = 'tel:+84787567381';
+  nationality = 'Vietnam';
   linkedin = 'https://www.linkedin.com/in/qu%E1%BB%91c-long-hu%E1%BB%B3nh/';
   github = 'https://github.com/';
-  cv = '#';
   photo = 'Images/anhava.jpg';
 
   navItems = [
@@ -105,6 +110,12 @@ export class AppComponent implements AfterViewInit {
       icon: 'fas fa-toolbox',
       level: 80,
       items: ['Figma', 'Canva', 'Git', 'Notion']
+    },
+    {
+      category: 'E-commerce Ops',
+      icon: 'fas fa-store',
+      level: 85,
+      items: ['Shopee', 'TikTok Shop', 'Seller Center', 'Live Commerce']
     }
   ];
 
@@ -173,14 +184,26 @@ export class AppComponent implements AfterViewInit {
       fullName: 'Afterglow - AI-Powered Cosmetic E-Commerce Platform [A+]',
       year: '2026',
       course: '[UEL] Advanced Business Website Development',
-      role: 'Product BA / AI Commerce Builder — full-stack build (Angular, Node.js, MongoDB), UI/UX and AI feature design',
+      role: 'Product BA / AI Commerce Builder: full-stack build (Angular, Node.js, MongoDB), UI/UX and AI feature design',
       link: '#',
-      github: '#',
+      github: 'https://github.com/hoquangvinh124/Afterglow-Cosmetic',
       caseStudy: '#',
       image: 'Images/projects/afterglow/cover.jpg',
+      gallery: [
+        'Images/projects/afterglow/cover.jpg',
+        'Images/projects/afterglow/gallery-1.jpg',
+        'Images/projects/afterglow/gallery-2.jpg',
+        'Images/projects/afterglow/gallery-3.jpg',
+        'Images/projects/afterglow/gallery-4.jpg',
+        'Images/projects/afterglow/gallery-5.jpg',
+        'Images/projects/afterglow/gallery-6.jpg',
+        'Images/projects/afterglow/gallery-7.jpg',
+        'Images/projects/afterglow/gallery-8.jpg',
+        'Images/projects/afterglow/gallery-9.jpg'
+      ],
       summary: 'AI-powered cosmetics e-commerce platform pairing a modern Angular/Node.js/MongoDB stack with an "AI Doctor" advisory suite for personalized skincare and makeup recommendations.',
-      problem: 'Cosmetics shoppers rarely know their real skin type (~63% of women don\'t), and most e-commerce sites offer only generic recommendations — hurting trust, conversion, and retention.',
-      solution: 'Built a full-stack platform (Angular + Node.js/Express + MongoDB) with an "AI Doctor" suite — AI Dermatologist, AI Client Advisor, AI Makeup Artist, and a real-time AI Voice Concierge (LiveKit/WebRTC) — for personalized skincare and product guidance.',
+      problem: 'Cosmetics shoppers rarely know their real skin type (~63% of women don\'t), and most e-commerce sites offer only generic recommendations. This hurts trust, conversion, and retention.',
+      solution: 'Built a full-stack platform (Angular + Node.js/Express + MongoDB) with an "AI Doctor" suite: AI Dermatologist, AI Client Advisor, AI Makeup Artist, and a real-time AI Voice Concierge (LiveKit/WebRTC), all for personalized skincare and product guidance.',
       impact: 'All core business flows (auth, cart, checkout, order management, admin dashboard) reached a 100% test-pass rate, validated against a real competitor (Flower Knows) as differentiated by AI-driven personalization.',
       features: [
         'AI Dermatologist, Client Advisor & Makeup Artist advisory suite',
@@ -194,7 +217,6 @@ export class AppComponent implements AfterViewInit {
         { value: '100%', label: 'core flows passed testing' },
         { value: '4', label: 'AI advisory features' }
       ],
-      expanded: false,
       themeColor: 'rgba(0, 255, 204, 0.6)',
       details: [
         'Identified customer pain points in online cosmetic shopping and proposed AI-driven personalization.',
@@ -214,9 +236,18 @@ export class AppComponent implements AfterViewInit {
       github: '#',
       caseStudy: '#',
       image: 'Images/projects/vinfast-vf6-campaign/cover.jpg',
+      gallery: [
+        'Images/projects/vinfast-vf6-campaign/cover.jpg',
+        'Images/projects/vinfast-vf6-campaign/gallery-1.jpg',
+        'Images/projects/vinfast-vf6-campaign/gallery-2.jpg',
+        'Images/projects/vinfast-vf6-campaign/gallery-3.jpg',
+        'Images/projects/vinfast-vf6-campaign/gallery-4.jpg',
+        'Images/projects/vinfast-vf6-campaign/gallery-5.jpg',
+        'Images/projects/vinfast-vf6-campaign/gallery-6.jpg'
+      ],
       summary: 'Integrated MarTech campaign strategy using a WordPress-centered digital funnel to convert EV-hesitant Vietnamese families into VinFast VF6 test drives and buyers.',
       problem: 'Vietnamese consumers remain hesitant about EV adoption (charging, cost, family fit); VinFast needed a data-driven marketing system to convert that hesitation into test drives and purchases for the VF6.',
-      solution: 'Designed an integrated MarTech architecture centered on a WordPress landing page hub, connecting Meta/Google/TikTok Ads, GA4/GTM/Hotjar tracking, and HubSpot CRM across three phases — Awareness, Engagement, Maintenance — mapped to the customer journey.',
+      solution: 'Designed an integrated MarTech architecture centered on a WordPress landing page hub, connecting Meta/Google/TikTok Ads, GA4/GTM/Hotjar tracking, and HubSpot CRM across three phases (Awareness, Engagement, Maintenance) mapped to the customer journey.',
       impact: 'Projected funnel: 5,000,000 reach → 180,000 site visits → 2,000 test-drive registrations → 900 completed test drives → 120 purchases, with a full budget plan and CPC/CPL/CAC evaluation model.',
       features: [
         'WordPress landing hub with VF5-vs-VF6 comparison content',
@@ -230,7 +261,6 @@ export class AppComponent implements AfterViewInit {
         { value: '5M', label: 'projected reach' },
         { value: '120', label: 'projected VF6 purchases' }
       ],
-      expanded: false,
       themeColor: 'rgba(142, 45, 226, 0.6)',
       details: [
         'Conducted market and competitor analysis to define target segments and personas.',
@@ -245,13 +275,25 @@ export class AppComponent implements AfterViewInit {
       fullName: 'OLDIE ZONE - E-Commerce Platform for Classic Culture Enthusiasts [A]',
       year: '2025',
       course: '[UEL] Advanced Business Website Development',
-      role: 'Team member (5-person team, equal contribution) — front-end, AWS serverless integration, and AI feature design',
+      role: 'Team member (5-person team, equal contribution): front-end, AWS serverless integration, and AI feature design',
       link: '#',
-      github: '#',
+      github: 'https://github.com/hoquangvinh124/Final-PTWKD',
       caseStudy: '#',
       image: 'Images/projects/oldie-zone/cover.jpg',
+      gallery: [
+        'Images/projects/oldie-zone/cover.jpg',
+        'Images/projects/oldie-zone/gallery-1.jpg',
+        'Images/projects/oldie-zone/gallery-2.jpg',
+        'Images/projects/oldie-zone/gallery-3.jpg',
+        'Images/projects/oldie-zone/gallery-4.jpg',
+        'Images/projects/oldie-zone/gallery-5.jpg',
+        'Images/projects/oldie-zone/gallery-6.jpg',
+        'Images/projects/oldie-zone/gallery-7.jpg',
+        'Images/projects/oldie-zone/gallery-8.jpg',
+        'Images/projects/oldie-zone/gallery-9.jpg'
+      ],
       summary: 'A serverless, AI-enhanced e-commerce platform blending retail, streaming, and a peer marketplace to help Vietnamese collectors buy, trade, and relive vintage VHS/CD/DVD culture together.',
-      problem: 'Vietnamese collectors of vintage VHS/CD/DVD culture have no specialized platform to catalog, trade, or connect over their collections — existing sites are simple retail with no personalization or community.',
+      problem: 'Vietnamese collectors of vintage VHS/CD/DVD culture have no specialized platform to catalog, trade, or connect over their collections. Existing sites are simple retail with no personalization or community.',
       solution: 'Built a serverless B2C platform (AWS S3/CloudFront/Lambda/Location Service) combining shopping with a community marketplace (THREAD), a VHS-style streaming room (CINE ROOM), an AI recommendation engine, and a RAG chatbot powered by Claude 4.5 Sonnet.',
       impact: 'All core e-commerce and AI features (auth, search, cart, checkout, cine room, thread posting) passed functional testing, delivering a fully working front-end prototype on a serverless + AI architecture.',
       features: [
@@ -266,7 +308,6 @@ export class AppComponent implements AfterViewInit {
         { value: '100%', label: 'core features passed testing' },
         { value: '3', label: 'AI-powered features' }
       ],
-      expanded: false,
       themeColor: 'rgba(255, 88, 88, 0.6)',
       details: [
         'Designed e-commerce workflows for browsing, purchasing, and community interaction.',
@@ -281,15 +322,24 @@ export class AppComponent implements AfterViewInit {
       fullName: 'UniJobs+ - Centralized Recruitment Platform for VNU-HCM [A+]',
       year: '2025',
       course: '[UEL] Information System Analysis and Design',
-      role: 'Team member (Group E3, 5 people) — business analysis, requirements modeling (BPMN/DFD/UML), and database design',
+      role: 'Team member (Group E3, 5 people): business analysis, requirements modeling (BPMN/DFD/UML), and database design',
       link: '#',
-      github: '#',
+      github: 'https://github.com/tanminz/Unijob-Code',
       caseStudy: '#',
       image: 'Images/projects/unijobs-plus/cover.jpg',
+      gallery: [
+        'Images/projects/unijobs-plus/cover.jpg',
+        'Images/projects/unijobs-plus/gallery-1.jpg',
+        'Images/projects/unijobs-plus/gallery-2.jpg',
+        'Images/projects/unijobs-plus/gallery-3.jpg',
+        'Images/projects/unijobs-plus/gallery-4.jpg',
+        'Images/projects/unijobs-plus/gallery-5.jpg',
+        'Images/projects/unijobs-plus/gallery-6.jpg'
+      ],
       summary: 'A system-analysis case study proposing and prototyping "UniJobs+," a centralized, verified recruitment platform to replace VNU-HCM\'s fragmented student job-search channels.',
-      problem: 'VNU-HCM\'s ~90,000 students across 8 member universities have no centralized, trustworthy recruitment channel — job info is scattered across Facebook groups and unverified forms, with no employer verification or tracking.',
-      solution: 'Designed and prototyped a centralized, role-based (Student/Recruiter/SAO Admin) recruitment platform with verified-employer postings and personalized matching — modeled via BPMN, DFD, UML, and a normalized (3NF) ERD, built as a Figma prototype and functional Flask/Bootstrap site.',
-      impact: 'Delivered a complete analysis-to-prototype system — full SRS, database schema, working Flask/JSON proof-of-concept, and mobile + desktop UI flows — demonstrating a viable path to replace informal recruitment channels.',
+      problem: 'VNU-HCM\'s ~90,000 students across 8 member universities have no centralized, trustworthy recruitment channel. Job info is scattered across Facebook groups and unverified forms, with no employer verification or tracking.',
+      solution: 'Designed and prototyped a centralized, role-based (Student/Recruiter/SAO Admin) recruitment platform with verified-employer postings and personalized matching. It was modeled via BPMN, DFD, UML, and a normalized (3NF) ERD, then built as a Figma prototype and functional Flask/Bootstrap site.',
+      impact: 'Delivered a complete analysis-to-prototype system: full SRS, database schema, working Flask/JSON proof-of-concept, and mobile plus desktop UI flows. It demonstrates a viable path to replace informal recruitment channels.',
       features: [
         'Student profiles with personalized job matching by major/GPA/skills',
         'Employer verification workflow and applicant management dashboard',
@@ -302,7 +352,6 @@ export class AppComponent implements AfterViewInit {
         { value: '90K+', label: 'students across 8 universities' },
         { value: '3', label: 'user roles modeled' }
       ],
-      expanded: false,
       themeColor: 'rgba(58, 123, 213, 0.6)',
       details: [
         'Analyzed recruitment processes for students and employers.',
@@ -319,9 +368,19 @@ export class AppComponent implements AfterViewInit {
       course: '[UEL] Programming Techniques',
       role: 'System architecture rationale, file-based storage implementation, and database/entity design',
       link: '#',
-      github: '#',
+      github: 'https://github.com/hoquangvinh124/SyntaxError101-FinalProject',
       caseStudy: '#',
       image: 'Images/projects/cv-management/cover.jpg',
+      gallery: [
+        'Images/projects/cv-management/cover.jpg',
+        'Images/projects/cv-management/gallery-1.jpg',
+        'Images/projects/cv-management/gallery-2.jpg',
+        'Images/projects/cv-management/gallery-3.jpg',
+        'Images/projects/cv-management/gallery-4.jpg',
+        'Images/projects/cv-management/gallery-5.jpg',
+        'Images/projects/cv-management/gallery-6.jpg',
+        'Images/projects/cv-management/gallery-7.jpg'
+      ],
       summary: 'A Flask + Bootstrap HR web app that replaces spreadsheet-based hiring with JSON-backed candidate tracking, automated status emails, and exportable recruitment dashboards.',
       problem: 'HR teams relying on spreadsheets or manual filing for candidate data find it slow, error-prone, and hard to scale.',
       solution: 'Built a web-based CV Management System with a Flask backend and Bootstrap front-end, storing candidate/event/user data in structured JSON files to support profile management, status tracking, and automated recruiter workflows.',
@@ -338,7 +397,6 @@ export class AppComponent implements AfterViewInit {
         { value: '100%', label: 'core workflows stable' },
         { value: '2', label: 'export formats (Excel/PDF)' }
       ],
-      expanded: false,
       themeColor: 'rgba(248, 87, 166, 0.6)',
       details: [
         'Collaborated on a web-based CV management system.',
@@ -353,15 +411,26 @@ export class AppComponent implements AfterViewInit {
       fullName: 'Trong Lá Nớ - Social Commerce Campaign for a Hue Food Brand',
       year: '2026',
       course: '[UEL] Social Commerce',
-      role: 'Team member (Group 2, 6 people, equal contribution) — campaign strategy, content, and KPI analysis',
+      role: 'Team member (Group 2, 6 people, equal contribution): campaign strategy, content, and KPI analysis',
       link: '#',
       github: '#',
       caseStudy: '#',
       image: 'Images/projects/socom/cover.jpg',
+      gallery: [
+        'Images/projects/socom/cover.jpg',
+        'Images/projects/socom/gallery-1.jpg',
+        'Images/projects/socom/gallery-2.jpg',
+        'Images/projects/socom/gallery-3.jpg',
+        'Images/projects/socom/gallery-4.jpg',
+        'Images/projects/socom/gallery-5.jpg',
+        'Images/projects/socom/gallery-6.jpg',
+        'Images/projects/socom/gallery-7.jpg',
+        'Images/projects/socom/gallery-8.jpg'
+      ],
       summary: 'A 10-day AISAS-based social commerce campaign that used clone-account seeding across Facebook and TikTok to build trust and purchase intent for a small homemade Hue food brand.',
       problem: '"Trong Lá Nớ," a new homemade Hue-style nem chả brand, needed to build awareness, trust, and purchase intent in a crowded local food market where competitors compete mainly on price rather than storytelling.',
       solution: 'Designed and ran a 10-day AISAS-based social commerce campaign across Facebook and TikTok using three coordinated "clone" personas, a content matrix (storytelling video, packaging contest, education, minigame), and structured A/B testing of content and audiences.',
-      impact: 'Exceeded targets on several KPIs — 13,544 impressions vs. 10,000 target, 2,000 unique visitors vs. 1,500, 89% positive sentiment vs. 80% target — and drove 12 real product purchases during the campaign window.',
+      impact: 'Exceeded targets on several KPIs: 13,544 impressions vs. 10,000 target, 2,000 unique visitors vs. 1,500, and 89% positive sentiment vs. 80% target. It also drove 12 real product purchases during the campaign window.',
       features: [
         'Three-persona "clone account" seeding ecosystem',
         'AISAS-mapped content calendar (storytelling, contest, education, minigame)',
@@ -374,7 +443,6 @@ export class AppComponent implements AfterViewInit {
         { value: '13.5K', label: 'impressions vs 10K target' },
         { value: '89%', label: 'positive sentiment' }
       ],
-      expanded: false,
       themeColor: 'rgba(107, 155, 91, 0.6)',
       details: [
         'Mapped the campaign to the AISAS model across a 10-day content calendar.',
@@ -389,11 +457,21 @@ export class AppComponent implements AfterViewInit {
       fullName: 'Galaxy Play vs. VieON & Netflix Vietnam - Facebook Competitor Analysis',
       year: '2025',
       course: '[UEL] Digital Marketing Data Analysis',
-      role: 'Team member (5-person team, equal contribution) — data collection, cleaning automation, and strategic recommendations',
+      role: 'Team member (5-person team, equal contribution): data collection, cleaning automation, and strategic recommendations',
       link: '#',
-      github: '#',
+      github: 'https://github.com/tlinhnene/Galaxy_scraper',
       caseStudy: '#',
       image: 'Images/projects/w2-competitor-analysis/cover.jpg',
+      gallery: [
+        'Images/projects/w2-competitor-analysis/cover.jpg',
+        'Images/projects/w2-competitor-analysis/gallery-1.jpg',
+        'Images/projects/w2-competitor-analysis/gallery-2.jpg',
+        'Images/projects/w2-competitor-analysis/gallery-3.jpg',
+        'Images/projects/w2-competitor-analysis/gallery-4.jpg',
+        'Images/projects/w2-competitor-analysis/gallery-5.jpg',
+        'Images/projects/w2-competitor-analysis/gallery-6.jpg',
+        'Images/projects/w2-competitor-analysis/gallery-7.jpg'
+      ],
       summary: 'A data-driven competitor analysis comparing Galaxy Play\'s Facebook/TikTok strategy against VieON and Netflix Vietnam, revealing a strong-acquisition/weak-retention gap driven by app UX issues.',
       problem: 'Galaxy Play needed to understand how its Facebook/TikTok marketing compared to competitors VieON and Netflix Vietnam, and why strong acquisition wasn\'t translating into retention.',
       solution: 'Built a multi-tool data pipeline (Apify, Fanpage Karma, Meta Ads Library, custom Python/Selenium scraper) to collect posts/comments/ads, then applied engagement-rate benchmarking, hashtag/word-cloud analysis, and an experimental linear-regression engagement model, visualized in Power BI.',
@@ -410,7 +488,6 @@ export class AppComponent implements AfterViewInit {
         { value: '56.8%', label: 'negative reviews found' },
         { value: '3', label: 'brands benchmarked' }
       ],
-      expanded: false,
       themeColor: 'rgba(58, 180, 210, 0.6)',
       details: [
         'Built a custom Python/Selenium scraper alongside Apify and Fanpage Karma data collection.',
@@ -435,8 +512,12 @@ export class AppComponent implements AfterViewInit {
     track.scrollBy({ left: direction * 360, behavior: 'smooth' });
   }
 
-  toggleDetails(project: any) {
-    project.expanded = !project.expanded;
+  openProject(project: any) {
+    this.selectedProject = project;
+  }
+
+  closeProject() {
+    this.selectedProject = null;
   }
 
   @HostListener('window:scroll')
