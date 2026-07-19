@@ -495,6 +495,50 @@ export class AppComponent implements AfterViewInit {
         'Modeled engagement prediction with linear regression and hashtag/word-cloud analysis.',
         'Benchmarked all three brands on an AARRR funnel and delivered a SWOT-based strategy.'
       ]
+    },
+    {
+      id: 'chuyen-lang-nghe',
+      name: 'Chuyện Làng Nghề',
+      fullName: 'Chuyện Làng Nghề - Omnichannel Handicraft Retail Strategy',
+      year: '2026',
+      course: '[UEL] Online Retail Business',
+      role: 'Team member (Group 4, 5 people): Haravan website UI/UX and brand identity design, storytelling/blog content, and omnichannel KPI planning',
+      link: '#',
+      github: '#',
+      caseStudy: '#',
+      image: 'Images/projects/chuyen-lang-nghe/cover.jpg',
+      gallery: [
+        'Images/projects/chuyen-lang-nghe/cover.jpg',
+        'Images/projects/chuyen-lang-nghe/gallery-1.jpg',
+        'Images/projects/chuyen-lang-nghe/gallery-2.jpg',
+        'Images/projects/chuyen-lang-nghe/gallery-3.jpg',
+        'Images/projects/chuyen-lang-nghe/gallery-4.jpg',
+        'Images/projects/chuyen-lang-nghe/gallery-5.jpg',
+        'Images/projects/chuyen-lang-nghe/gallery-6.jpg',
+        'Images/projects/chuyen-lang-nghe/gallery-7.jpg'
+      ],
+      summary: 'An omnichannel retail strategy and storytelling-first Haravan website for a Vietnamese handicraft brand, unified with Shopee, TikTok Shop, and Facebook under one central operations hub.',
+      problem: 'Vietnamese craft-village goods are usually sold through fragmented single channels with no unified brand storytelling, making it hard to justify a premium price against mass-produced décor.',
+      solution: 'Designed a "storytelling first, selling second" Haravan website (brand identity system, artisan-crafting hero banners, About-page social-proof stats, blog) acting as the central hub syncing products, orders, and inventory to Shopee, TikTok Shop, and Facebook, backed by a 5-phase 24-week rollout and a cross-channel KPI dashboard.',
+      impact: 'Delivered a full go-to-market system spanning market/competitor/customer analysis, a Business Model Canvas, and Month-6/Month-12 targets across all four channels (e.g. 20,000+ monthly site visitors, 15,000 TikTok Shop followers).',
+      features: [
+        'Storytelling-first Haravan website: hero banners, About-page stats, blog, multi-CTA product pages',
+        'Omnichannel hub syncing inventory/orders across Shopee, TikTok Shop, and Facebook',
+        '3C-framework content and livestream plan for TikTok Shop and Shopee Live',
+        'Cross-channel campaign synchronization with a unified KPI dashboard'
+      ],
+      tags: ['Omnichannel Retail', 'Haravan', 'Shopee/TikTok Shop', 'Business Model Canvas'],
+      metrics: [
+        { value: '4', label: 'sales channels unified' },
+        { value: '24', label: 'week rollout roadmap' }
+      ],
+      themeColor: 'rgba(196, 130, 48, 0.6)',
+      details: [
+        'Conducted market, customer, and competitor analysis for Vietnamese handicraft e-commerce.',
+        'Designed the Haravan website UI/UX and brand identity system (colors, typography, page layouts).',
+        'Authored storytelling blog content, including the "Một đời - Một nghề" News article.',
+        'Built the omnichannel data-synchronization model and KPI measurement framework across 4 channels.'
+      ]
     }
   ];
 
